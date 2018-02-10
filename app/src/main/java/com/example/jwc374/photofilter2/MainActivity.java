@@ -86,10 +86,16 @@ public class MainActivity extends AppCompatActivity {
                 if (requestCode == 0) //then we're choosing from gallery
                 {
                     Uri targetUri = data.getData();
+                    String path = PathFinder.getPath(this, targetUri);
                     Bitmap bitmap;
                     try {
+                        Intent intent = new Intent(this, EditChosenPhoto.class); //defining which activity to start next
+                        intent.putExtra("path", path); //passing the file name so we know which file to open in the next activity
+                        startActivity(intent); // starting next activity
+
                         bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
                         IMG.setImageBitmap(ImageFix.fixOrientation(bitmap));
+
                     } catch (FileNotFoundException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -99,8 +105,9 @@ public class MainActivity extends AppCompatActivity {
                 {
                     File imageFile = new File("storage/emulated/0/Pictures/image" + i + ".jpg");
                     if(imageFile.exists()){
-                        Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath()); //retrieving file
-                        IMG.setImageBitmap(ImageFix.fixOrientation(myBitmap));
+                        Intent intent = new Intent(this, EditChosenPhoto.class); //defining which activity to start next
+                        intent.putExtra("index", Integer.toString(i)); //passing the index so we know which file to open in the next activity
+                        startActivity(intent); // starting next activity
                         i++;
                     }
                 }
