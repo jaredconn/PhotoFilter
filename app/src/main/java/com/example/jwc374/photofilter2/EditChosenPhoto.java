@@ -28,29 +28,25 @@ public class EditChosenPhoto extends AppCompatActivity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
 
-        /*
         Intent intent = getIntent();
 
         String i = intent.getStringExtra("index"); //the index counter to identify the current photo
+        if(i != null && Integer.parseInt(i) > 0) { //if a photo was taken i will be greater than 0
 
-        File imageFile = new File("storage/emulated/0/Pictures/image" + i + ".jpg");
-        if (imageFile.exists()) {
-            Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath()); //retrieving file
-            IMG.setImageBitmap(ImageFix.fixOrientationMirror(myBitmap));
+            File imageFile = new File("storage/emulated/0/Pictures/image" + i + ".jpg");
+
+            if (imageFile.exists()) {
+                Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath()); //retrieving file
+                IMG.setImageBitmap(ImageFix.fixOrientationMirror(myBitmap));
+            }
         }
-    */
-        Intent intent = getIntent();
-        String path = intent.getStringExtra("path");
-        File imageFile = new File(path);
-        if (imageFile.exists()) {
-            Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath()); //retrieving file
-            IMG.setImageBitmap(ImageFix.fixOrientation(myBitmap));
+        else { //otherwise we're choosing from the gallery
+            String path = intent.getStringExtra("path");
+            File imageFile = new File(path);
+            if (imageFile.exists()) {
+                Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath()); //retrieving file
+                IMG.setImageBitmap(ImageFix.fixOrientation(myBitmap));
+            }
         }
-        /*
-        bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
-        IMG.setImageBitmap(ImageFix.fixOrientation(bitmap));
-    */
     }
-
-
 }

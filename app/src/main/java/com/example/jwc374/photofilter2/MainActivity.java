@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getFileName() {
+        i++;
         return "image" + i + ".jpg";
     }
 
@@ -86,29 +87,19 @@ public class MainActivity extends AppCompatActivity {
                 if (requestCode == 0) //then we're choosing from gallery
                 {
                     Uri targetUri = data.getData();
-                    String path = PathFinder.getPath(this, targetUri);
-                    Bitmap bitmap;
-                    try {
-                        Intent intent = new Intent(this, EditChosenPhoto.class); //defining which activity to start next
-                        intent.putExtra("path", path); //passing the file name so we know which file to open in the next activity
-                        startActivity(intent); // starting next activity
-
-                        bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
-                        IMG.setImageBitmap(ImageFix.fixOrientation(bitmap));
-
-                    } catch (FileNotFoundException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                    String path = PathFinder.getPath(this, targetUri); //finds the path of the chosen file
+                    Intent intent = new Intent(this, EditChosenPhoto.class); //defining which activity to start next
+                    intent.putExtra("path", path); //passing the file name so we know which file to open in the next activity
+                    startActivity(intent); // starting next activity
                 }
                 if (requestCode == 1) //then we're taking a new photo
                 {
                     File imageFile = new File("storage/emulated/0/Pictures/image" + i + ".jpg");
+
                     if(imageFile.exists()){
-                        Intent intent = new Intent(this, EditChosenPhoto.class); //defining which activity to start next
+                        Intent intent = new Intent(this, EditChosenPhoto.class);
                         intent.putExtra("index", Integer.toString(i)); //passing the index so we know which file to open in the next activity
                         startActivity(intent); // starting next activity
-                        i++;
                     }
                 }
             }
