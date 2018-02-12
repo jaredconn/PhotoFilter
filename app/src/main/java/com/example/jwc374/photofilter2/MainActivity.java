@@ -1,30 +1,22 @@
 package com.example.jwc374.photofilter2;
 
-import android.content.Context;
-import android.content.DialogInterface;
+
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
+
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int CAMERA_REQUEST = 1888;
 
     Button button;
     Button button2;
@@ -38,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = (Button) findViewById(R.id.button);
-        button2 = (Button) findViewById(R.id.button2);
-        IMG = (ImageView) findViewById(R.id.img);
+        button = findViewById(R.id.button);
+        button2 = findViewById(R.id.button2);
+        IMG = findViewById(R.id.img);
 
 
 //choose existing from gallery
@@ -61,10 +53,11 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 //saving the image to a file
-                File imageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                File imageDirectory = new File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Camera/" ); //gallery directory
                 String fileName = getFileName();
                 File imageFile = new File(imageDirectory, fileName);
                 Uri imageUri = Uri.fromFile(imageFile);
+                galleryAddPic("storage/emulated/0/DCIM/Camera/image" + i + ".jpg");
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
 
                 if (cameraIntent.resolveActivity(getPackageManager()) != null) //check if camera application is available on device
@@ -74,6 +67,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Saves the taken photo to the gallery
+     * @param mCurrentPhotoPath
+     */
+    protected void galleryAddPic(String mCurrentPhotoPath) {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(mCurrentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
+    }
+
+
 
     private String getFileName() {
         i++;
@@ -94,11 +101,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (requestCode == 1) //then we're taking a new photo
                 {
-                    File imageFile = new File("storage/emulated/0/Pictures/image" + i + ".jpg");
+                    File imageFile = new File("storage/emulated/0/DCIM/Camera/image" + i + ".jpg");
 
                     if(imageFile.exists()){
                         Intent intent = new Intent(this, EditChosenPhoto.class);
-                        intent.putExtra("index", Integer.toString(i)); //passing the index so we know which file to open in the next activity
+                        String path = "storage/emulated/0/DCIM/Camera/image" + i + ".jpg";
+                        intent.putExtra("path",path);
                         startActivity(intent); // starting next activity
                     }
                 }
