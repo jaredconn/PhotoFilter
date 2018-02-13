@@ -12,33 +12,96 @@
         android:layout_marginBottom="180dp"
         android:layout_centerHorizontal="true" />
 
-    <GridLayout
-        android:id="@+id/buttonPanel"
+
+    <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/img">
-
-    </GridLayout>
-
-    <Button
-        android:id="@+id/green"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:text="Green Scale" />
+        android:id="@+id/horizontalScrollView">
+
+            <LinearLayout
+                 android:orientation="horizontal"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+
+                <Button
+                android:id="@+id/green"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:text="Green" />
+
+
+                <Button
+                android:id="@+id/blue"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/green"
+                android:text="Blue" />
+
+                <Button
+                    android:id="@+id/red"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/green"
+                    android:text="Red" />
+
+                <Button
+                    android:id="@+id/gray"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/green"
+                    android:text="Gray" />
+                <Button
+                    android:id="@+id/yellow"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/green"
+                    android:text="Yellow" />
+                <Button
+                    android:id="@+id/magenta"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/green"
+                    android:text="Magenta" />
+
+                <Button
+                    android:id="@+id/cyan"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/green"
+                    android:text="Cyan" />
+                <Button
+                android:id="@+id/white"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/green"
+                android:text="White" />
+
+            </LinearLayout>
+
+    </HorizontalScrollView>
+
 
     <Button
         android:id="@+id/rotate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/green"
-        android:layout_marginBottom="11dp"
-        android:layout_toEndOf="@+id/buttonPanel"
+        android:layout_above="@+id/horizontalScrollView"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="12dp"
         android:text="Rotate" />
 
 
-    <Button
+    <Button 
         android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,13 +110,6 @@
         android:layout_alignParentEnd="true"
         android:text="Save to Gallery" />
 
-    <Button
-        android:id="@+id/blue"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/green"
-        android:text="Deep" />
 
 
 </RelativeLayout>
