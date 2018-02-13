@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.jwc374.photofilter2.MainActivity">
 
+
     <Button
         android:id="@+id/button"
         android:layout_centerInParent="true"

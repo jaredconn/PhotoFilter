@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PhotoFilter2</string>
+    <string name="file_provider_authority" translatable="false">com.quiro.fileproviderexample.fileprovider</string>
 </resources>
