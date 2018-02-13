@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
         button2 = findViewById(R.id.button2);
         IMG = findViewById(R.id.img);
+
+        getSupportActionBar().hide();
+        View decorView = getWindow().getDecorView();
+// Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
 
 //choose existing from gallery

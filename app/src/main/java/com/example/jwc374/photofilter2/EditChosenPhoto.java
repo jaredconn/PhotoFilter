@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+
 public class EditChosenPhoto extends AppCompatActivity {
 
 
@@ -24,6 +24,13 @@ public class EditChosenPhoto extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_chosen_photo);
+
+        getSupportActionBar().hide();
+        View decorView = getWindow().getDecorView();
+// Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
 
         ImageView IMG;
         IMG = (ImageView) findViewById(R.id.img);
@@ -41,6 +48,22 @@ public class EditChosenPhoto extends AppCompatActivity {
         save = (Button) findViewById(R.id.save);
         Button blue;
         blue = (Button) findViewById(R.id.blue);
+        Button red;
+        red = (Button) findViewById(R.id.red);
+        Button cyan;
+        cyan = (Button) findViewById(R.id.cyan);
+        Button yellow;
+        yellow = (Button) findViewById(R.id.yellow);
+        Button magenta;
+        magenta = (Button) findViewById(R.id.magenta);
+
+        Button white;
+        white = (Button) findViewById(R.id.white);
+        Button gray;
+        gray = (Button) findViewById(R.id.gray);
+
+
+
 
 
         final Context context = getApplicationContext();
@@ -83,8 +106,87 @@ public class EditChosenPhoto extends AppCompatActivity {
                 File imageFile = new File(path);
                 Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath()); //retrieving file
                 IMG.setImageBitmap(ImageFix.makeGreen(myBitmap));
+
             }
         });
+        red.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View view) {
+                ImageView IMG;
+                IMG = (ImageView) findViewById(R.id.img);
+                Intent intent = getIntent();
+                String path = intent.getStringExtra("path");
+                File imageFile = new File(path);
+                Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath()); //retrieving file
+                IMG.setImageBitmap(ImageFix.makeRed(myBitmap));
+
+            }
+        });
+        cyan.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View view) {
+                ImageView IMG;
+                IMG = (ImageView) findViewById(R.id.img);
+                Intent intent = getIntent();
+                String path = intent.getStringExtra("path");
+                File imageFile = new File(path);
+                Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath()); //retrieving file
+                IMG.setImageBitmap(ImageFix.makeCyan(myBitmap));
+            }
+        });
+        yellow.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View view) {
+                ImageView IMG;
+                IMG = (ImageView) findViewById(R.id.img);
+                Intent intent = getIntent();
+                String path = intent.getStringExtra("path");
+                File imageFile = new File(path);
+                Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath()); //retrieving file
+                IMG.setImageBitmap(ImageFix.makeYellow(myBitmap));
+            }
+        });
+        magenta.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View view) {
+                ImageView IMG;
+                IMG = (ImageView) findViewById(R.id.img);
+                Intent intent = getIntent();
+                String path = intent.getStringExtra("path");
+                File imageFile = new File(path);
+                Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath()); //retrieving file
+                IMG.setImageBitmap(ImageFix.makeMagenta(myBitmap));
+            }
+        });
+        white.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View view) {
+                ImageView IMG;
+                IMG = (ImageView) findViewById(R.id.img);
+                Intent intent = getIntent();
+                String path = intent.getStringExtra("path");
+                File imageFile = new File(path);
+                Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath()); //retrieving file
+                IMG.setImageBitmap(ImageFix.makeWhite(myBitmap));
+            }
+        });
+        gray.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View view) {
+                ImageView IMG;
+                IMG = (ImageView) findViewById(R.id.img);
+                Intent intent = getIntent();
+                String path = intent.getStringExtra("path");
+                File imageFile = new File(path);
+                Bitmap myBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath()); //retrieving file
+                IMG.setImageBitmap(ImageFix.makeGray(myBitmap));
+            }
+        });
+
+
+        rotate.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View view) {
+
+                ImageView IMG;
+                IMG = (ImageView) findViewById(R.id.img);
+                IMG.setRotation(IMG.getRotation() + 90);
+            }
+        });
+
         save.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
                 ImageView IMG;
